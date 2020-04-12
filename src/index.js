@@ -1,15 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './App/layout/App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
+const rootEl = document.getElementById('root');
+
+let render = () => {
+  ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  <App />
+  </React.StrictMode>,rootEl
+  )
+}
+
+if (module.hot) {
+  module.hot.accept('./App/layout/App', () => {
+   setTimeout(render); 
+  }
+  )
+}
+
+render();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
